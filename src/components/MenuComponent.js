@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 // import { Media } from 'reactstrap';
 import {
-  Card, CardImg, CardImgOverlay, CardText, CardBody,
-  CardTitle
+  Card, CardImg, CardImgOverlay, CardTitle
 } from 'reactstrap';
+import DishDetail from './DishDetailComponent';
 
 class Menu extends Component {
 
@@ -19,15 +19,23 @@ class Menu extends Component {
   }
 
   renderDish(dish) {
+    // if (this.state.selectedDish != null) {
+    //   return (
+    //     <Card>
+    //       <CardImg top src={dish.image} alt={dish.name} />
+    //       <CardBody>
+    //         <CardTitle>{dish.name}</CardTitle>
+    //         <CardText>{dish.description}</CardText>
+    //       </CardBody>
+    //     </Card>
+    //   )
+    // } else {
+    //   return <div></div>
+    // }
+
     if (this.state.selectedDish != null) {
       return (
-        <Card>
-          <CardImg top src={dish.image} alt={dish.name} />
-          <CardBody>
-            <CardTitle>{dish.name}</CardTitle>
-            <CardText>{dish.description}</CardText>
-          </CardBody>
-        </Card>
+        <DishDetail selectedDish={this.state.selectedDish} />
       )
     } else {
       return <div></div>
@@ -37,7 +45,7 @@ class Menu extends Component {
   render() {
     const menu = this.props.dishes.map((dish) => {
       return (
-        <div key={dish.id} className="col-12 col-md-5 m-1 ">
+        <div key={dish.id} className="col-12 col-md-5 m-1">
           <Card
             onClick={() => this.onDishSelected(dish)}>
 
@@ -56,11 +64,7 @@ class Menu extends Component {
         <div className="row">
           {menu}
         </div>
-        <div className="row">
-          <div className="col-12 col-md-10 ml-2 m-1">
-            {this.renderDish(this.state.selectedDish)}
-          </div>
-        </div>
+        {this.renderDish(this.state.selectedDish)}
       </div>
     );
   }
