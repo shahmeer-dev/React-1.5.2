@@ -1,16 +1,49 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand, Jumbotron } from 'reactstrap';
-
+import { NavLink } from 'react-router-dom';
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    Jumbotron
+} from 'reactstrap';
 
 class Header extends Component {
+    constructor(props) {
+        super(props);
+
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+            isOpen: false
+        };
+    }
+    toggle() {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    }
     render() {
         return (
             <React.Fragment>
-                <Navbar dark>
+                <Navbar dark expand="md">
                     <div className="container">
-                        <NavbarBrand href="/">Restorante Con fusion</NavbarBrand>
+                        <NavbarToggler onClick={this.toggle} />
+                        <NavbarBrand href="/"><img src="./assets/images/logo.png" height="30" width="41" alt="Restorante Con fusion" /></NavbarBrand>
+                        <Collapse isOpen={this.state.isOpen} navbar>
+                            <Nav navbar>
+                                <NavItem>
+                                    <NavLink to="/home" className="nav-link"><i className="fa fa-home fa-lg"></i>Home</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink to="/menu" className="nav-link"><i className="fa fa-list fa-lg"></i>Menu</NavLink>
+                                </NavItem>
+                            </Nav>
+                        </Collapse>
                     </div>
                 </Navbar>
+
                 <Jumbotron>
                     <div className="container">
                         <div className="row row-header">
@@ -23,7 +56,6 @@ class Header extends Component {
                 </Jumbotron>
             </React.Fragment>
         )
-
     }
 }
 

@@ -7,7 +7,8 @@ import {
 function RenderMenuItem({ dish, onClick }) {
   return (
     <Card
-      onClick={() => onClick(dish.id)}>
+      // onClick={() => onClick(dish.id)}
+      >
       <CardImg width="100%" src={dish.image} alt={dish.name} />
       <CardImgOverlay>
         <CardTitle>{dish.name}</CardTitle>
@@ -28,7 +29,7 @@ const Menu = (props) => {
 
   return (
     <div className="container">
-      <div className="row">
+      <div className="row m-1">
         {menu}
       </div>
     </div >
